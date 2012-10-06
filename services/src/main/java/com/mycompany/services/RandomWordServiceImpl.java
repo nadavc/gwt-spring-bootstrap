@@ -18,7 +18,7 @@ public class RandomWordServiceImpl implements RandomWordService {
 
     @Override
     public String readRandomWordFor(String word) {
-        if (!word.equals("Hello")) {
+        if (!word.equals("hello")) {
             throw new RuntimeException("Unable to find words other than 'Hello'");
         }
 
