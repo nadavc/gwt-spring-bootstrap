@@ -1,0 +1,24 @@
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+    }
+
+    ideaWorkspace {
+        outputFile = file("${rootProject.projectDir}/idea/workspace/${project.name}.iws")
+    }
+
+    ideaModule {
+        outputFile = file("${rootProject.projectDir}/idea/modules/${project.name}.iml")
+    }
+    ideaProject {
+        outputFile = file("${rootProject.projectDir}/idea/project/${rootProject.name}.ipr")
+    }
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.2'
+}

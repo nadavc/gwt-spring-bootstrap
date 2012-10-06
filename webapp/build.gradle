@@ -1,0 +1,83 @@
+apply plugin: 'war'
+
+dependencies {
+    compile project(':api-shared')
+    compile 'com.google.gwt:gwt-user:2.4.0'
+    compile 'com.google.gwt:gwt-servlet:2.4.0'
+    compile 'org.springframework:spring-web:3.1.2.RELEASE'
+    compile 'javax.inject:javax.inject:1'
+
+    runtime project(':dal')
+    runtime project(':services')
+
+    // dependencies for the gwt compiler
+    providedCompile 'com.google.gwt:gwt-dev:2.4.0'
+
+}
+
+war.doLast {
+    ant.unzip(src: file(tasks.war.archivePath), dest: "$buildDir/exploded")
+}
+
+processResources {
+    from 'src/main/java'
+    include '**/*.gwt.xml'
+}
+
+task devMode(dependsOn: war) << {
+
+    def cp = [*sourceSets.main.java.srcDirs.asList(),           // Java source
+              sourceSets.main.output.resourcesDir,              // Generated resources
+              sourceSets.main.output.classesDir,                // Generated classes
+              *sourceSets.main.compileClasspath.collect(),      // Compile deps
+              *sourceSets.main.runtimeClasspath.collect()]      // Runtime deps
+
+    def args = [
+            '-startupUrl', 'MyWebApp.html', '-war', "${buildDir}/exploded",
+            'com.mycompany.mywebapp.MyWebApp'
+    ]
+
+    ant.java(failonerror: 'true', fork: 'true', classname: 'com.google.gwt.dev.DevMode') {
+        classpath {
+            cp.each {
+                pathelement(path: it)
+            }
+        }
+        jvmarg(value: '-Xmx1G')
+        jvmarg(value: '-Xdebug')
+        jvmarg(value: '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000')
+        args.each { a ->
+            arg(value: a)
+        }
+    }
+}
+
+//task compileGwt(dependsOn: classes) {
+//    ext.buildDir = "${project.buildDir}/gwt"
+//    ext.extraDir = "${project.buildDir}/extra"
+//
+//    def cp = [*sourceSets.main.java.srcDirs.asList(),         // Java source
+//            sourceSets.main.output.resourcesDir,              // Generated resources
+//            sourceSets.main.output.classesDir,                // Generated classes
+//            *sourceSets.main.compileClasspath.collect()]      // Deps
+//
+//    def params = ['-war', "${buildDir}/exploded", 'com.mycompany.mywebapp.MyWebApp']
+//
+//    ant.java(failonerror: 'true', fork: 'true', classname: 'com.google.gwt.dev.Compiler') {
+//        classpath {
+//            cp.each {
+//                pathelement(path: it)
+//            }
+//        }
+//        jvmarg(value: '-Xmx1G')
+//        params.each { a ->
+//            arg(value: a)
+//        }
+//    }
+//}
+
+//war.dependsOn compileGwt
+//war {
+//    from compileGwt.buildDir
+//}
+

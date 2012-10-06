@@ -1,0 +1,13 @@
+* Separation into layers
+* Dependency on interfaces only only, webapp puts everything together
+* Communication with shared objects
+* Spring
+   - autoinject on rpc servlets support
+   - component scanning
+* Log4J initializer
+* Gradle build with DevMode support
+* Unit tests with in memory database for DAL
+* Automatic mocking for IoC objects
+* Eclipse/IDEA integration
+* Package naming convention
+
