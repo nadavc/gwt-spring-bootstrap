@@ -2,6 +2,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
@@ -16,14 +17,14 @@
     <context:annotation-config/>
     <context:component-scan base-package="com.mycompany.dal"/>
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="embeddedDataSource"/>
-    </bean>
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="embeddedDataSource"/>
 
-    <bean id="wordDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.mycompany.dal.WordDao"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
+    <bean id="wordDao"
+          class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="com.mycompany.dal.WordDao"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
 
     <jdbc:embedded-database id="embeddedDataSource" type="H2">
         <jdbc:script location="classpath:/sql/schema.sql"/>
