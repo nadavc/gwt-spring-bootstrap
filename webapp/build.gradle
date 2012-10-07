@@ -6,6 +6,7 @@ dependencies {
     compile 'com.google.gwt:gwt-servlet:2.4.0'
     compile 'org.springframework:spring-web:3.1.2.RELEASE'
     compile 'javax.inject:javax.inject:1'
+    compile 'log4j:log4j:1.2.17'
 
     runtime project(':dal')
     runtime project(':services')
