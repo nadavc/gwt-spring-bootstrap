@@ -12,7 +12,6 @@ public class GreetingServiceImpl implements GreetingService {
 
     public String greetServer(String name) throws IllegalArgumentException {
         String randomHello = randomWordService.readRandomWordFor("hello");
-
         return String.format("%s, %s!", randomHello, name);
     }
 }

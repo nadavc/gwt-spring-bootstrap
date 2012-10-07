@@ -8,8 +8,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.inject.Inject;
 import java.util.List;
 
-import static junit.framework.Assert.assertTrue;
+import static org.fest.assertions.Assertions.assertThat;
 
+/**
+ * Example of a JUnit test that uses Spring and a real context to load the dependencies
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/WEB-INF/spring/*-context.xml")
 public class WordDaoTest {
@@ -19,9 +22,10 @@ public class WordDaoTest {
 
     @Test
     public void testLoad() {
-        List<String> hello = wordDao.readWordsFor("hello");
+        List<String> words = wordDao.readWordsFor("hello");
 
-        assertTrue(hello.size() == 5);
+        // This is fest-assert. A fluent style of assertions.
+        assertThat(words).isNotNull().hasSize(5);
     }
 
 }

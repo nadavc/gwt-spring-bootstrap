@@ -52,30 +52,6 @@ task devMode(dependsOn: war) << {
     }
 }
 
-//task compileGwt(dependsOn: classes) {
-//    ext.buildDir = "${project.buildDir}/gwt"
-//    ext.extraDir = "${project.buildDir}/extra"
-//
-//    def cp = [*sourceSets.main.java.srcDirs.asList(),         // Java source
-//            sourceSets.main.output.resourcesDir,              // Generated resources
-//            sourceSets.main.output.classesDir,                // Generated classes
-//            *sourceSets.main.compileClasspath.collect()]      // Deps
-//
-//    def params = ['-war', "${buildDir}/exploded", 'com.mycompany.mywebapp.MyWebApp']
-//
-//    ant.java(failonerror: 'true', fork: 'true', classname: 'com.google.gwt.dev.Compiler') {
-//        classpath {
-//            cp.each {
-//                pathelement(path: it)
-//            }
-//        }
-//        jvmarg(value: '-Xmx1G')
-//        params.each { a ->
-//            arg(value: a)
-//        }
-//    }
-//}
-
 //war.dependsOn compileGwt
 //war {
 //    from compileGwt.buildDir

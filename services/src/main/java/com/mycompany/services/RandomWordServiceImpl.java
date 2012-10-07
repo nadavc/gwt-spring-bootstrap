@@ -18,11 +18,11 @@ public class RandomWordServiceImpl implements RandomWordService {
 
     @Override
     public String readRandomWordFor(String word) {
-        if (!word.equals("hello")) {
-            throw new RuntimeException("Unable to find words other than 'Hello'");
+        List<String> words = wordDao.readWordsFor(word);
+        if (words.size() == 0) {
+            throw new RuntimeException("Could not find words for: " + word);
         }
 
-        List<String> words = wordDao.readWordsFor(word);
         int random = new Random().nextInt(words.size());
         return words.get(random);
     }

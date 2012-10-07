@@ -5,4 +5,9 @@ dependencies {
     compile 'com.google.gwt:gwt-user:2.4.0'
     compile 'org.springframework:spring-context:3.1.2.RELEASE'
     compile 'javax.inject:javax.inject:1'
+
+    testCompile 'junit:junit:4.10'
+    testCompile 'org.springframework:spring-test:3.1.2.RELEASE'
+    testCompile 'org.mockito:mockito-core:1.9.5-rc1'
+    testCompile 'org.easytesting:fest-assert:1.4'
 }
