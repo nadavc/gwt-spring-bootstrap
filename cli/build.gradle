@@ -1,0 +1,16 @@
+apply plugin: 'application'
+
+dependencies {
+    compile project(':api-shared')
+
+    compile 'commons-cli:commons-cli:1.2'
+    compile 'org.springframework:spring-context:3.1.2.RELEASE'
+    compile 'javax.inject:javax.inject:1'
+
+    runtime project(':dal')
+    runtime project(':services')
+}
+
+mainClassName = 'com.mycompany.cli.Launcher'
+
+// Available tasks include 'run', 'distZip',
