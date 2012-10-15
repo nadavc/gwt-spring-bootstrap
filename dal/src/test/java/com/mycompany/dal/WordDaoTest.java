@@ -14,7 +14,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * Example of a JUnit test that uses Spring and a real context to load the dependencies
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/WEB-INF/spring/*-context.xml")
+@ContextConfiguration(locations = "classpath:/META-INF/spring/*-context.xml")
 public class WordDaoTest {
 
     @Inject

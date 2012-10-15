@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Launcher {
 
     private static ApplicationContext createCtx() {
-        final String CONTEXT_PATH = "classpath*:/WEB-INF/spring/*-context.xml";
+        final String CONTEXT_PATH = "classpath*:/META-INF/spring/*-context.xml";
         return new ClassPathXmlApplicationContext(new String[] {CONTEXT_PATH});
     }
 
