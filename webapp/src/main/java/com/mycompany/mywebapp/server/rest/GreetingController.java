@@ -2,9 +2,7 @@ package com.mycompany.mywebapp.server.rest;
 
 import com.mycompany.services.GreetingService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -15,9 +13,15 @@ public class GreetingController {
     @Inject
     private GreetingService greetingService;
 
-    @RequestMapping("/hello")
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @ResponseBody
-    public String hello(@RequestParam String name) {
+    public String helloByGet(@RequestParam String name) {
+        return greetingService.greetServer(name);
+    }
+
+    @RequestMapping(value = "/hello", method = RequestMethod.POST)
+    @ResponseBody
+    public String helloByPost(@RequestParam String name) {
         return greetingService.greetServer(name);
     }
 
