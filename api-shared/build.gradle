@@ -1,8 +1,0 @@
-dependencies {
-    compile 'com.google.gwt:gwt-servlet:2.4.0'
-    compile 'com.google.gwt:gwt-user:2.4.0'
-}
-
-jar {
-    from sourceSets.main.allSource
-}

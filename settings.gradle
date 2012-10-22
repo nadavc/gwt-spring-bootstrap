@@ -1,4 +1,5 @@
-include 'api-shared'
+include 'shared'
 include 'dal'
 include 'services'
+include 'services-api'
 include 'webapp', 'cli'

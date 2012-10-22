@@ -1,6 +1,7 @@
 dependencies {
-    compile project(':api-shared')
+    compile project(':shared')
     compile project(':dal')
+    compile project(':services-api')
 
     compile 'com.google.gwt:gwt-user:2.4.0'
     compile 'org.springframework:spring-context:3.1.2.RELEASE'

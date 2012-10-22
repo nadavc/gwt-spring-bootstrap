@@ -1,15 +1,21 @@
 apply plugin: 'war'
+apply plugin: 'jetty'
 
 dependencies {
-    compile project(':api-shared')
+    compile project(':services-api')
+
     compile 'com.google.gwt:gwt-user:2.4.0'
     compile 'com.google.gwt:gwt-servlet:2.4.0'
     compile 'org.springframework:spring-web:3.1.2.RELEASE'
+    compile 'org.springframework:spring-webmvc:3.1.2.RELEASE'
+
     compile 'javax.inject:javax.inject:1'
     compile 'log4j:log4j:1.2.17'
 
     runtime project(':dal')
     runtime project(':services')
+    runtime 'org.hibernate:hibernate-validator-annotation-processor:4.1.0.Final'
+    runtime 'org.slf4j:slf4j-log4j12:1.7.2'
 
     // dependencies for the gwt compiler
     providedCompile 'com.google.gwt:gwt-dev:2.4.0'

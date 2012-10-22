@@ -27,12 +27,26 @@
         <servlet-class>com.mycompany.mywebapp.server.gwtservices.GreetingGwtServiceImpl</servlet-class>
     </servlet>
 
+    <!-- Spring MVC Requests -->
+    <servlet>
+        <servlet-name>mvcDispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/META-INF/spring/webapp-context-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>greetServlet</servlet-name>
         <url-pattern>/mywebapp/greet</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>mvcDispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>MyWebApp.html</welcome-file>

@@ -1,7 +1,7 @@
 apply plugin: 'application'
 
 dependencies {
-    compile project(':api-shared')
+    compile project(':services-api')
 
     compile 'commons-cli:commons-cli:1.2'
     compile 'org.springframework:spring-context:3.1.2.RELEASE'
