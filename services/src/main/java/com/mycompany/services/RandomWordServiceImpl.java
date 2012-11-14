@@ -2,6 +2,7 @@ package com.mycompany.services;
 
 import com.mycompany.dal.WordDao;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -9,9 +10,9 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * A service that isn't necessarily tied to an external API
+ * A service that isn't necessarily tied to an external API. By convention, tagged as @Component.
  */
-@Service
+@Component
 public class RandomWordServiceImpl implements RandomWordService {
 
     @Inject
