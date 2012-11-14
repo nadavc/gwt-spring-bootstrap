@@ -12,3 +12,4 @@ Todo
 - Add gwtsecurity + spring security
 - Add @Secured examples
 - Also need to do a TenantAwareFactoryBean, that creates instances based on different tenants
+- Separate the layers into different directories (for clarity)
