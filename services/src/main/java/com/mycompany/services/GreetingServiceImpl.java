@@ -1,6 +1,7 @@
 package com.mycompany.services;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -13,6 +14,7 @@ public class GreetingServiceImpl implements GreetingService {
     @Inject
     private RandomWordService randomWordService;
 
+    @Secured("ROLE_GREETER")
     public String greetServer(String name) throws IllegalArgumentException {
         String randomHello = randomWordService.readRandomWordFor("hello");
         String result = String.format("%s, %s!", randomHello, name);

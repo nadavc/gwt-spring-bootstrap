@@ -125,7 +125,7 @@ public class MyWebApp implements EntryPoint {
             // Show the RPC error message to the user
             dialogBox.setText("Remote Procedure Call - Failure");
             serverResponseLabel.addStyleName("serverResponseLabelError");
-            serverResponseLabel.setHTML(SERVER_ERROR);
+            serverResponseLabel.setHTML(caught.getMessage());
             dialogBox.center();
             closeButton.setFocus(true);
           }

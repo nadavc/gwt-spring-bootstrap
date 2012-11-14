@@ -1,6 +1,7 @@
 package com.mycompany.services;
 
 import com.mycompany.dal.WordDao;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,6 +18,7 @@ public class RandomWordServiceImpl implements RandomWordService {
     private WordDao wordDao;
 
     @Override
+    @Secured("ROLE_USER")
     public String readRandomWordFor(String word) {
         List<String> words = wordDao.readWordsFor(word);
         if (words.size() == 0) {

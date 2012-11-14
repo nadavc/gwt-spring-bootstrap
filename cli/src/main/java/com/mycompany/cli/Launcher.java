@@ -26,13 +26,13 @@ public class Launcher {
 
         // Verify that the requested app exists
         if (!ctx.containsBean(appName)) {
-            System.out.println("Unable to find " + appName);
+            System.out.println("Unable to find Console application named " + appName);
             return;
         }
 
         // And launch it
-        CmdLineApp app = (CmdLineApp)ctx.getBean(appName);
-        app.execute(args);
+        ConsoleApp app = (ConsoleApp)ctx.getBean(appName);
+        app.executeFromCli(args);
     }
 
 }
