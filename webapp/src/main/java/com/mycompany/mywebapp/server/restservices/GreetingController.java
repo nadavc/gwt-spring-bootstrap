@@ -1,4 +1,4 @@
-package com.mycompany.mywebapp.server.rest;
+package com.mycompany.mywebapp.server.restservices;
 
 import com.mycompany.services.GreetingService;
 import org.springframework.stereotype.Controller;

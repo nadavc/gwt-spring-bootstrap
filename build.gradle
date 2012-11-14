@@ -1,24 +1,28 @@
 allprojects {
-	apply plugin: 'java'
-	apply plugin: 'eclipse'
-	apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
 
     repositories {
         mavenCentral()
     }
 
-    ideaWorkspace {
-        outputFile = file("${rootProject.projectDir}/idea/workspace/${project.name}.iws")
-    }
+    ideaWorkspace.outputFile = file("${rootProject.projectDir}/idea/${project.name}.iws")
 
-    ideaModule {
-        outputFile = file("${rootProject.projectDir}/idea/modules/${project.name}.iml")
-    }
-    ideaProject {
-        outputFile = file("${rootProject.projectDir}/idea/project/${rootProject.name}.ipr")
+    ideaModule.outputFile = file("${rootProject.projectDir}/idea/${project.name}.iml")
+}
+
+idea.project {
+    outputFile = file("${rootProject.projectDir}/idea/${rootProject.name}.ipr")
+
+    ipr.withXml { provider ->
+        provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping[0].with {
+            it.@vcs = 'Git'
+            it.@directory = '$PROJECT_DIR$/..'
+        }
     }
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '1.2'
+    gradleVersion = '1.2'
 }

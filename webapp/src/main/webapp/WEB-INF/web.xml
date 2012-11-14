@@ -6,7 +6,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:/META-INF/spring/*-context.xml</param-value>
+        <param-value>classpath*:/META-INF/spring/*-context.xml,/META-INF/spring/webapp-context.xml</param-value>
     </context-param>
 
     <context-param>
@@ -23,8 +23,9 @@
     </listener>
 
     <servlet>
-        <servlet-name>greetServlet</servlet-name>
-        <servlet-class>com.mycompany.mywebapp.server.gwtservices.GreetingGwtServiceImpl</servlet-class>
+        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+        <servlet-class>com.mycompany.mywebapp.server.SpringGwtRemoteServiceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <!-- Spring MVC Requests -->
@@ -38,14 +39,20 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <!-- this is used for GWT devMode (the WAR runs in root context and client needs it in /mywebapp -->
     <servlet-mapping>
-        <servlet-name>greetServlet</servlet-name>
-        <url-pattern>/mywebapp/greet</url-pattern>
+        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+        <url-pattern>/mywebapp/gwtrpc/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>springGwtRemoteServiceServlet</servlet-name>
+        <url-pattern>/gwtrpc/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>mvcDispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
