@@ -1,7 +1,7 @@
 apply plugin: 'application'
 
 dependencies {
-    compile project(':services-api')
+    compile project(':services:services-api')
 
     compile 'commons-cli:commons-cli:1.2'
     compile 'org.springframework:spring-context:3.1.3.RELEASE'
@@ -9,7 +9,7 @@ dependencies {
     compile 'javax.inject:javax.inject:1'
 
     runtime project(':dal')
-    runtime project(':services')
+    runtime project(':services:services-impl')
 }
 
 mainClassName = 'com.mycompany.cli.Launcher'

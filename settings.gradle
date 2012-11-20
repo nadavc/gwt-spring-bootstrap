@@ -1,5 +1,4 @@
 include 'shared'
 include 'dal'
-include 'services'
-include 'services-api'
-include 'webapp', 'cli'
+include 'services:services-api', 'services:services-impl'
+include 'pres:webapp', 'pres:cli'

@@ -1,1 +1,1 @@
-insert into users values ('tomer', 'pass', 'ROLE_USER');
+insert into users values ('eve', 'pass', 'ROLE_USER');

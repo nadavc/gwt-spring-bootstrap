@@ -14,7 +14,7 @@ public class GreetingServiceImpl implements GreetingService {
     @Inject
     private RandomWordService randomWordService;
 
-    // Only nadav (from firstTenant) is able to access this.
+    // Only joe (from firstTenant) is able to access this.
     @Secured("ROLE_GREETER")
     public String greetServer(String name) throws IllegalArgumentException {
         String randomHello = randomWordService.readRandomWordFor("hello");
