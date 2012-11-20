@@ -1,6 +1,5 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,8 +8,6 @@
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
         http://www.springframework.org/schema/jdbc
         http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
@@ -19,16 +16,49 @@
 
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean"
-          p:dataSource-ref="embeddedDataSource"/>
+          p:dataSource-ref="dataSource"/>
 
-    <bean id="wordDao"
-          class="org.mybatis.spring.mapper.MapperFactoryBean"
-          p:mapperInterface="com.mycompany.dal.WordDao"
-          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+            p:basePackage="com.mycompany.dal.dao"
+            p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
-    <jdbc:embedded-database id="embeddedDataSource" type="H2">
+    <bean id="dataSource" class="com.mycompany.dal.datasource.TenantAwareDataSource">
+        <property name="targetDataSources">
+            <map>
+                <entry key="firstTenant" value-ref="firstTenantDataSource"/>
+                <entry key="secondTenant" value-ref="secondTenantDataSource"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="baseDataSource"
+          class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close" abstract="true"
+          p:driverClassName="org.h2.Driver"
+          p:username="sa"
+          p:password=""/>
+
+    <!-- FIRST TENANT -->
+    <bean id="firstTenantDataSource"
+          parent="baseDataSource"
+          p:url="jdbc:h2:mem:firstTenant"/>
+
+    <jdbc:initialize-database data-source="firstTenantDataSource">
         <jdbc:script location="classpath:/sql/schema.sql"/>
         <jdbc:script location="classpath:/sql/data.sql"/>
-    </jdbc:embedded-database>
+        <jdbc:script location="classpath:/sql/data-firstTenant.sql"/>
+    </jdbc:initialize-database>
+
+    <!-- SECOND TENANT -->
+    <bean id="secondTenantDataSource"
+          parent="baseDataSource"
+          p:url="jdbc:h2:mem:secondTenant"/>
+
+    <jdbc:initialize-database data-source="secondTenantDataSource">
+        <jdbc:script location="classpath:/sql/schema.sql"/>
+        <jdbc:script location="classpath:/sql/data.sql"/>
+        <jdbc:script location="classpath:/sql/data-secondTenant.sql"/>
+    </jdbc:initialize-database>
+
 
 </beans>

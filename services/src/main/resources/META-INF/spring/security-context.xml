@@ -3,19 +3,22 @@
         xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:sec="http://www.springframework.org/schema/security"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
         xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/security
-           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <sec:global-method-security secured-annotations="enabled" />
+    <sec:global-method-security secured-annotations="enabled"/>
 
     <sec:authentication-manager>
-        <sec:authentication-provider>
-            <sec:user-service>
-                <sec:user name="jimi" password="pass" authorities="ROLE_USER, ROLE_GREETER" />
-                <sec:user name="bob" password="pass" authorities="ROLE_USER" />
-            </sec:user-service>
-        </sec:authentication-provider>
+        <sec:authentication-provider ref="authenticationProvider"/>
     </sec:authentication-manager>
+
+    <bean id="tenantContext"
+          class="com.mycompany.shared.TenantContextImpl"/>
+
 </beans>

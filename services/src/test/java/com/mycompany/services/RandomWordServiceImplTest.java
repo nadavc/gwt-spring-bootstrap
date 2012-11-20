@@ -1,6 +1,6 @@
 package com.mycompany.services;
 
-import com.mycompany.dal.WordDao;
+import com.mycompany.dal.dao.WordDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

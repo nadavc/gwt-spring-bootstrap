@@ -1,4 +1,4 @@
-package com.mycompany.dal;
+package com.mycompany.dal.dao;
 
 import org.apache.ibatis.annotations.Select;
 

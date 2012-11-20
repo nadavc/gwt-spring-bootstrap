@@ -1,5 +1,7 @@
-package com.mycompany.dal;
+package com.mycompany.dal.dao;
 
+import com.mycompany.dal.dao.UserDao;
+import com.mycompany.dal.dao.WordDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,7 +16,9 @@ import static org.fest.assertions.Assertions.assertThat;
  * Example of a JUnit test that uses Spring and a real context to load the dependencies
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/META-INF/spring/*-context.xml")
+@ContextConfiguration(locations = {
+        "classpath:/META-INF/spring/*-context.xml",
+})
 public class WordDaoTest {
 
     @Inject

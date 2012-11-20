@@ -7,7 +7,10 @@ A Gwt/Spring/Gradle application that can be used to bootstrap a web application
 
 Not very generic at this point :)
 
+- spring-security presentation: http://www.infoq.com/presentations/Securing-OAuth2-Spring-Security
+
 Todo
 ====
-- Also need to do a TenantAwareFactoryBean, that creates instances based on different tenants
 - Separate the layers into different directories (for clarity)
+
+

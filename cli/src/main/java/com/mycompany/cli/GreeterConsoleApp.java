@@ -12,7 +12,7 @@ import javax.inject.Inject;
  * In order to execute this app, the user must run ./cli greeter [params]
  */
 @Component("greeter")
-public class Greeter extends AbstractConsoleApp {
+public class GreeterConsoleApp extends AbstractConsoleApp {
 
     @Inject
     private GreetingService greetingService;

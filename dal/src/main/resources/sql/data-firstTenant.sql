@@ -1,0 +1,1 @@
+insert into users values ('nadav', 'pass', 'ROLE_USER,ROLE_GREETER');

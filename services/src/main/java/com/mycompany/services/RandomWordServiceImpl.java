@@ -1,9 +1,8 @@
 package com.mycompany.services;
 
-import com.mycompany.dal.WordDao;
+import com.mycompany.dal.dao.WordDao;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;

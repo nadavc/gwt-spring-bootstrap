@@ -1,5 +1,12 @@
 CREATE TABLE translations (
-    original varchar,
-    lang varchar,
-    translated varchar,
+  original   VARCHAR,
+  lang       VARCHAR,
+  translated VARCHAR
 );
+
+CREATE TABLE users (
+  username    VARCHAR,
+  password    VARCHAR,
+  authorities VARCHAR
+);
+
