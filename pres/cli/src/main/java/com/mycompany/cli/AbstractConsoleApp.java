@@ -2,11 +2,10 @@ package com.mycompany.cli;
 
 import org.apache.commons.cli.*;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.inject.Inject;
 
@@ -15,7 +14,7 @@ public abstract class AbstractConsoleApp implements ConsoleApp {
     private Options options = new Options();
 
     @Inject
-    private UserDetailsService userDetailsService;
+    private AuthenticationProvider authenticationProvider;
 
     public AbstractConsoleApp() {
         options.addOption("u", "username", true, "Username");
@@ -42,11 +41,9 @@ public abstract class AbstractConsoleApp implements ConsoleApp {
         String userName = cmdLine.getOptionValue("u");
         String password = cmdLine.getOptionValue("p");
 
-        UserDetails user = userDetailsService.loadUserByUsername(userName);
-        if (user.getPassword().equals(password)) {
-            Authentication auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
-        }
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userName, password);
+        Authentication authentication = authenticationProvider.authenticate(token);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
     protected abstract void addOptions(Options options);
