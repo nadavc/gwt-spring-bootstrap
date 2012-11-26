@@ -28,12 +28,12 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        // Username must be formatted as 'username:tenantId'
-        if (!Pattern.matches("[^:]+:.+", authentication.getName())) {
+        // Username must be formatted as 'username@tenantId'
+        if (!Pattern.matches("[^@]+@.+", authentication.getName())) {
             throw new RuntimeException("Invalid username format");
         }
 
-        String[] split = authentication.getName().split(":");
+        String[] split = authentication.getName().split("@");
         String username = split[0];
         String tenantId = split[1];
 

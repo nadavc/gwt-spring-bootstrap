@@ -18,7 +18,7 @@ public abstract class AbstractConsoleApp implements ConsoleApp {
 
     public AbstractConsoleApp() {
         options.addOption("u", "username", true, "Username");
-        options.addOption("p", "name", true, "Password");
+        options.addOption("p", "password", true, "Password");
     }
 
     public void executeFromCli(String[] args) throws ParseException {

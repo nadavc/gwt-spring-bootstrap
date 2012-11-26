@@ -23,7 +23,7 @@ Multi-tenancy
 - There are two tenants: 'firstTenant' and 'secondTenant'
 - Each tenant has its own H2 schema
 - Each tenant has one user
-- When logging in, you need to specify the tenant name within the username, like so: username:tenantName
+- When logging in, you need to specify the tenant name within the username, like so: username@tenantName
 - User in firstTenant: joe / pass
 - User in secondTenant: eve / pass
 - Only user 'joe' has permission to get a greeting.
